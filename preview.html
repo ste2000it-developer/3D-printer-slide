@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>เสนอซื้อเครื่องพิมพ์สามมิติ | 3D Printer Purchase Proposal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --navy:#06162d;
+      --navy2:#0b2447;
+      --blue:#155eef;
+      --sky:#eaf3ff;
+      --ink:#172033;
+      --muted:#667085;
+      --soft:#f4f7fb;
+      --line:#d9e3f0;
+      --white:#ffffff;
+      --green:#0f8a5f;
+      --orange:#c85a17;
+      --red:#b42318;
+      --shadow:0 26px 80px rgba(6,22,45,.14);
+      --radius:28px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:"Noto Sans Thai",system-ui,sans-serif;
+      background:
+        radial-gradient(circle at 10% -10%, rgba(21,94,239,.22), transparent 34rem),
+        radial-gradient(circle at 95% 10%, rgba(15,138,95,.14), transparent 28rem),
+        linear-gradient(180deg,#f8fbff 0%,#eef3f9 55%,#f7f9fc 100%);
+      color:var(--ink);
+      line-height:1.65;
+    }
+
+    .deck{
+      width:min(1200px, calc(100% - 36px));
+      margin:0 auto;
+    }
+
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:20;
+      backdrop-filter:blur(18px);
+      background:rgba(248,251,255,.86);
+      border-bottom:1px solid rgba(217,227,240,.9);
+    }
+    .topbar-inner{
+      width:min(1200px, calc(100% - 36px));
+      margin:0 auto;
+      padding:13px 0;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:18px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      color:var(--navy);
+      font-weight:900;
+      letter-spacing:-.02em;
+    }
+    .logo{
+      width:42px;height:42px;border-radius:15px;
+      background:linear-gradient(135deg,var(--blue),#00a3ff);
+      display:grid;place-items:center;color:white;
+      box-shadow:0 12px 26px rgba(21,94,239,.28);
+    }
+    .nav{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+    .nav a{
+      text-decoration:none;
+      color:#344054;
+      background:white;
+      border:1px solid #e3eaf4;
+      padding:8px 12px;
+      border-radius:999px;
+      font-size:13px;
+      font-weight:700;
+    }
+
+    section{padding:78px 0}
+    .slide{
+      min-height:calc(100vh - 70px);
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+    }
+
+    .hero{
+      display:grid;
+      grid-template-columns:1.02fr .98fr;
+      gap:42px;
+      align-items:center;
+    }
+
+    .eyebrow{
+      margin:0 0 12px;
+      color:var(--blue);
+      font-weight:900;
+      text-transform:uppercase;
+      letter-spacing:.09em;
+      font-size:13px;
+    }
+
+    h1,h2,h3{
+      margin:0;
+      color:var(--navy);
+      letter-spacing:-.035em;
+      line-height:1.15;
+    }
+    h1{font-size:clamp(42px,5.6vw,82px);font-weight:900}
+    h2{font-size:clamp(32px,3.4vw,50px);font-weight:900;margin-bottom:16px}
+    h3{font-size:27px;font-weight:900;margin-bottom:9px}
+
+    .lead{
+      margin:24px 0 0;
+      color:#45546b;
+      font-size:22px;
+      max-width:760px;
+    }
+
+    .hero-panel{
+      background:rgba(255,255,255,.88);
+      border:1px solid rgba(217,227,240,.95);
+      border-radius:34px;
+      padding:28px;
+      box-shadow:var(--shadow);
+      position:relative;
+      overflow:hidden;
+    }
+    .hero-panel:before{
+      content:"";
+      position:absolute;
+      inset:-40px -100px auto auto;
+      width:260px;height:260px;border-radius:50%;
+      background:rgba(21,94,239,.10);
+    }
+
+    .hero-products{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:16px;
+      position:relative;
+      z-index:1;
+    }
+    .hero-products img{
+      width:100%;
+      height:220px;
+      object-fit:contain;
+      background:white;
+      border-radius:24px;
+      border:1px solid #e5ecf6;
+      box-shadow:0 16px 36px rgba(6,22,45,.09);
+      padding:14px;
+    }
+    .hero-products img:first-child{grid-column:1/3;height:280px}
+
+    .stats{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:14px;
+      margin-top:26px;
+    }
+    .stat{
+      background:white;
+      border:1px solid var(--line);
+      border-radius:22px;
+      padding:18px;
+      box-shadow:0 14px 34px rgba(6,22,45,.06);
+    }
+    .stat b{
+      display:block;
+      color:var(--blue);
+      font-size:27px;
+      font-weight:900;
+      line-height:1.15;
+      margin-bottom:6px;
+    }
+    .stat span{color:var(--muted);font-size:14px;font-weight:600}
+
+    .section-head{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:30px;
+      margin-bottom:28px;
+    }
+    .section-head p{
+      margin:0;
+      color:var(--muted);
+      max-width:590px;
+      font-size:18px;
+    }
+
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+    .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+
+    .card{
+      background:rgba(255,255,255,.94);
+      border:1px solid rgba(217,227,240,.96);
+      border-radius:var(--radius);
+      padding:28px;
+      box-shadow:var(--shadow);
+    }
+
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      width:max-content;
+      padding:8px 13px;
+      border-radius:999px;
+      background:var(--sky);
+      color:var(--blue);
+      font-weight:900;
+      font-size:13px;
+      margin-bottom:12px;
+    }
+
+    .big-number{
+      font-size:58px;
+      font-weight:900;
+      letter-spacing:-.06em;
+      color:var(--blue);
+      line-height:1;
+      margin-bottom:12px;
+    }
+
+    .printer-card{
+      display:grid;
+      grid-template-columns:.95fr 1.05fr;
+      gap:32px;
+      align-items:center;
+      margin-bottom:28px;
+      overflow:hidden;
+      position:relative;
+    }
+    .printer-card.recommend{
+      border:2px solid rgba(21,94,239,.38);
+    }
+    .product-img-wrap{
+      background:linear-gradient(160deg,#f8fbff,#eef4fb);
+      border-radius:28px;
+      border:1px solid #e4ecf7;
+      min-height:420px;
+      display:grid;
+      place-items:center;
+      padding:26px;
+      position:relative;
+      overflow:hidden;
+    }
+    .product-img-wrap:before{
+      content:"";
+      position:absolute;
+      width:260px;height:260px;
+      border-radius:50%;
+      background:rgba(21,94,239,.08);
+      right:-70px;top:-60px;
+    }
+    .product-img-wrap img{
+      max-width:100%;
+      max-height:360px;
+      object-fit:contain;
+      filter:drop-shadow(0 28px 34px rgba(6,22,45,.18));
+      position:relative;
+      z-index:1;
+    }
+    .img-credit{
+      position:absolute;
+      left:18px;
+      bottom:14px;
+      z-index:2;
+      color:#8290a3;
+      font-size:11px;
+      background:rgba(255,255,255,.82);
+      border:1px solid #e4ecf7;
+      border-radius:999px;
+      padding:5px 10px;
+    }
+
+    .product-title-row{
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+      justify-content:space-between;
+      margin-bottom:10px;
+    }
+    .tag{
+      white-space:nowrap;
+      border-radius:999px;
+      padding:8px 12px;
+      background:#eaf3ff;
+      color:var(--blue);
+      font-weight:900;
+      font-size:13px;
+    }
+
+    .price{
+      margin:12px 0 16px;
+      font-size:36px;
+      line-height:1.1;
+      font-weight:900;
+      color:var(--navy);
+      letter-spacing:-.04em;
+    }
+    .price small{
+      font-size:15px;
+      font-weight:700;
+      color:var(--muted);
+      letter-spacing:0;
+    }
+
+    .spec-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+      margin:18px 0;
+    }
+    .spec{
+      background:#f7faff;
+      border:1px solid #e3eaf4;
+      border-radius:18px;
+      padding:13px 14px;
+    }
+    .spec span{display:block;color:var(--muted);font-size:13px;font-weight:700;margin-bottom:3px}
+    .spec b{font-size:16px;color:var(--navy)}
+
+    .list{
+      margin:12px 0 0;
+      padding-left:18px;
+    }
+    .list li{margin:5px 0}
+
+    .buy-box{
+      margin-top:18px;
+      padding:18px;
+      border-radius:22px;
+      background:#f7faff;
+      border:1px solid #dce8f6;
+    }
+    .buy-box b{display:block;margin-bottom:8px}
+    .buy-links{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+    .buy-links a{
+      text-decoration:none;
+      color:var(--blue);
+      background:white;
+      border:1px solid #cfe0f7;
+      padding:8px 11px;
+      border-radius:999px;
+      font-size:13px;
+      font-weight:900;
+    }
+
+    table{
+      border-collapse:separate;
+      border-spacing:0;
+      width:100%;
+      border:1px solid var(--line);
+      border-radius:24px;
+      overflow:hidden;
+      background:white;
+      box-shadow:var(--shadow);
+    }
+    th{
+      background:var(--navy);
+      color:white;
+      text-align:left;
+      padding:17px 16px;
+      font-size:15px;
+    }
+    td{
+      padding:16px;
+      border-bottom:1px solid var(--line);
+      vertical-align:top;
+      font-size:15.5px;
+    }
+    tr:last-child td{border-bottom:none}
+    tbody tr:nth-child(even) td{background:#f8fbff}
+
+    .material{
+      display:grid;
+      grid-template-columns:124px 1fr;
+      gap:20px;
+      align-items:center;
+    }
+    .material-photo{
+      height:124px;width:124px;
+      border-radius:32px;
+      background:linear-gradient(135deg,#fff,#eef4fb);
+      display:grid;
+      place-items:center;
+      border:1px solid #e2ebf6;
+      box-shadow:0 18px 38px rgba(6,22,45,.08);
+      overflow:hidden;
+    }
+    .material-photo img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+    .spool-icon{
+      width:80px;height:80px;border-radius:50%;
+      border:16px solid #155eef;
+      position:relative;
+    }
+    .spool-icon:after{
+      content:"";
+      position:absolute;inset:18px;border-radius:50%;
+      border:12px solid #06162d;
+      background:white;
+    }
+
+    .decision-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:20px;
+    }
+    .decision-card{
+      background:white;
+      border:1px solid var(--line);
+      box-shadow:0 18px 45px rgba(6,22,45,.09);
+      border-radius:28px;
+      padding:26px;
+    }
+    .rank{
+      display:inline-grid;
+      place-items:center;
+      width:42px;height:42px;
+      border-radius:16px;
+      background:var(--sky);
+      color:var(--blue);
+      font-weight:900;
+      margin-bottom:16px;
+      font-size:20px;
+    }
+
+    .source-list{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:12px;
+    }
+    .source-list a{
+      color:var(--blue);
+      background:white;
+      text-decoration:none;
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:13px 15px;
+      font-weight:800;
+      font-size:14px;
+    }
+
+    .note{
+      color:var(--muted);
+      font-size:14px;
+      margin-top:14px;
+    }
+
+    @media(max-width:980px){
+      .hero,.printer-card,.grid-3,.grid-2,.decision-grid,.source-list{
+        grid-template-columns:1fr;
+      }
+      .stats{grid-template-columns:1fr 1fr}
+      .section-head{flex-direction:column;align-items:flex-start}
+      .nav{display:none}
+      .product-img-wrap{min-height:320px}
+      .hero-products img:first-child{grid-column:auto;height:220px}
+      .hero-products{grid-template-columns:1fr}
+    }
+
+    @media print{
+      .topbar{display:none}
+      body{background:white}
+      section{page-break-inside:avoid;padding:40px 0}
+      .slide{min-height:auto}
+      .card,table{box-shadow:none}
+      .deck{width:100%;padding:0 10mm}
+      .buy-links a:after{content:" (" attr(href) ")";font-weight:400;color:#667085}
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand"><div class="logo">3D</div>เสนอซื้อเครื่องพิมพ์สามมิติ</div>
+      <nav class="nav">
+        <a href="#overview">พื้นฐาน</a>
+        <a href="#models">รุ่นแนะนำ</a>
+        <a href="#materials">วัสดุ</a>
+        <a href="#price">ราคา/ซื้อ</a>
+        <a href="#decision">สรุป</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="deck">
+    <section class="hero slide">
+      <div>
+        <p class="eyebrow">3D Printer Purchase Proposal</p>
+        <h1>สไลด์เสนอซื้อเครื่องพิมพ์สามมิติ สำหรับงานใช้งานจริง</h1>
+        <p class="lead">คัดรุ่นที่เหมาะกับงานช่าง งานโกดัง งาน Prototype และการทำชิ้นงาน Functional เช่น Holder, Fixture, Housing, Organizer และงานชิ้นใหญ่</p>
+        <div class="stats">
+          <div class="stat"><b>256mm+</b><span>ขนาดที่เริ่มเหมาะกับงานจริง</span></div>
+          <div class="stat"><b>300mm</b><span>เหมาะกับของชิ้นใหญ่</span></div>
+          <div class="stat"><b>PLA</b><span>เริ่มต้นง่ายที่สุด</span></div>
+          <div class="stat"><b>PETG</b><span>เหมาะกับของใช้จริง</span></div>
+        </div>
+      </div>
+
+      <div class="hero-panel">
+        <div class="hero-products">
+          <img src="https://siamreprap.com/wp-content/uploads/2025/02/A1-for-bentoweb-600x600.jpg" alt="Bambu Lab A1">
+          <img src="https://www.3dxworld.com/cdn/shop/files/CrealityK1Max2025Edition.png?v=1768799348&width=900" alt="Creality K1 Max">
+          <img src="https://siamreprap.com/wp-content/uploads/2025/02/P1S-for-web-600x600.jpg" alt="Bambu Lab P1S">
+        </div>
+      </div>
+    </section>
+
+    <section id="overview">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Basic</p>
+          <h2>พื้นฐานก่อนเลือกเครื่อง</h2>
+        </div>
+        <p>สำหรับงานใช้งานจริงควรเลือกเครื่อง FDM เพราะใช้เส้นพลาสติก ต้นทุนต่ำ ซ่อมง่าย และเหมาะกับของใช้ในบริษัทมากกว่าเครื่อง Resin ที่เน้นงานฟิกเกอร์หรืองานละเอียดมาก</p>
+      </div>
+
+      <div class="grid-3">
+        <div class="card">
+          <span class="pill">FDM</span>
+          <h3>แบบเส้นพลาสติก</h3>
+          <p>หลอมเส้นพลาสติกทีละชั้น เหมาะกับงานใช้งานจริง เช่น กล่อง ขายึด Fixture, Jig, Holder, Adapter และ Prototype</p>
+        </div>
+        <div class="card">
+          <span class="pill">Build Volume</span>
+          <h3>พื้นที่พิมพ์คือหัวใจ</h3>
+          <p>ถ้าเครื่องเล็กเกินไป ชิ้นงานใหญ่ต้องแบ่งพิมพ์หลายชิ้น ทำให้เสียเวลาและอาจแข็งแรงน้อยลง</p>
+        </div>
+        <div class="card">
+          <span class="pill">After Sales</span>
+          <h3>บริการหลังขายสำคัญ</h3>
+          <p>สำหรับบริษัทควรซื้อจากร้านที่ขอใบเสนอราคา/ใบกำกับภาษีได้ และมีอะไหล่หรือศูนย์บริการในไทย</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="models">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Recommended Models</p>
+          <h2>รุ่นที่เสนอพิจารณา</h2>
+        </div>
+        <p>คัด 3 รุ่นหลักตามโจทย์: เริ่มง่าย / ของใหญ่ / ใช้งานยาว โดยใส่ข้อมูลราคาและช่องทางซื้อไว้ในแต่ละรุ่น</p>
+      </div>
+
+      <article class="card printer-card recommend">
+        <div class="product-img-wrap">
+          <img src="https://siamreprap.com/wp-content/uploads/2025/02/A1-for-bentoweb-600x600.jpg" alt="Bambu Lab A1">
+          <span class="img-credit">รูปจาก Siamreprap</span>
+        </div>
+        <div>
+          <div class="product-title-row">
+            <div>
+              <span class="pill">Best Overall</span>
+              <h2>Bambu Lab A1</h2>
+            </div>
+            <span class="tag">แนะนำที่สุด</span>
+          </div>
+          <p>รุ่นที่เหมาะที่สุดถ้าต้องการเครื่องแรกที่ใช้งานจริงได้ทันที ใช้ง่าย จูนน้อย และเหมาะกับงานบริษัทส่วนใหญ่</p>
+          <div class="price">฿10,900–11,900 <small>โดยประมาณ</small></div>
+          <div class="spec-grid">
+            <div class="spec"><span>พื้นที่พิมพ์</span><b>256 × 256 × 256 mm</b></div>
+            <div class="spec"><span>ความเร็วสูงสุด</span><b>500 mm/s</b></div>
+            <div class="spec"><span>วัสดุเหมาะ</span><b>PLA / PETG / TPU</b></div>
+            <div class="spec"><span>จุดเด่น</span><b>Auto Calibration</b></div>
+          </div>
+          <b>เหมาะกับงาน</b>
+          <ul class="list">
+            <li>Organizer / Holder Scanner / ขาตั้ง Tablet</li>
+            <li>Fixture / Jig / Housing อุปกรณ์</li>
+            <li>งาน Prototype และงานบริษัททั่วไป</li>
+          </ul>
+          <div class="buy-box">
+            <b>ช่องทางซื้อ</b>
+            Siamreprap, Bentoweb, Print3DD, Shopee Mall
+            <div class="buy-links">
+              <a href="https://siamreprap.com/siamreprap-3d-printer-shop/education-and-academic-research/bambu-lab-a1/" target="_blank">Siamreprap</a>
+              <a href="https://siamreprap.bentoweb.com/en/product/1061640/Bambulab-A1-FDM-3D-Printer" target="_blank">Bentoweb</a>
+              <a href="https://bambulab.com/en/a1/tech-specs" target="_blank">Official Specs</a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="card printer-card">
+        <div class="product-img-wrap">
+          <img src="https://www.3dxworld.com/cdn/shop/files/CrealityK1Max2025Edition.png?v=1768799348&width=900" alt="Creality K1 Max">
+          <span class="img-credit">รูปจาก 3DxWorld</span>
+        </div>
+        <div>
+          <div class="product-title-row">
+            <div>
+              <span class="pill" style="background:#fff1ea;color:#b45309">Large Print</span>
+              <h2>Creality K1 Max</h2>
+            </div>
+            <span class="tag" style="background:#fff1ea;color:#b45309">ของใหญ่</span>
+          </div>
+          <p>เหมาะที่สุดถ้าเป้าหมายคือพิมพ์งานชิ้นใหญ่แบบชิ้นเดียวจบ เช่น Rack, Housing ใหญ่, Fixture ใหญ่ หรืองาน Workshop</p>
+          <div class="price">฿28,000–36,590 <small>โดยประมาณ</small></div>
+          <div class="spec-grid">
+            <div class="spec"><span>พื้นที่พิมพ์</span><b>300 × 300 × 300 mm</b></div>
+            <div class="spec"><span>ความเร็วสูงสุด</span><b>600 mm/s</b></div>
+            <div class="spec"><span>โครงสร้าง</span><b>CoreXY / Enclosed</b></div>
+            <div class="spec"><span>จุดเด่น</span><b>งานใหญ่ / เร็ว</b></div>
+          </div>
+          <b>เหมาะกับงาน</b>
+          <ul class="list">
+            <li>Rack / กล่องใหญ่ / Organizer ใหญ่</li>
+            <li>Housing ขนาดใหญ่ / Fixture ขนาดใหญ่</li>
+            <li>งาน Workshop และงานช่างจริงจัง</li>
+          </ul>
+          <div class="buy-box">
+            <b>ช่องทางซื้อ</b>
+            Siamreprap, In2real3D, Central, OfficeMate, Shopee Mall
+            <div class="buy-links">
+              <a href="https://www.creality.com/products/creality-k1-max-3d-printer" target="_blank">Official Specs</a>
+              <a href="https://siamreprap.com/siamreprap-3d-printer-shop/manufacturing-and-rd/bambu-lab-p1s/" target="_blank">Siamreprap Related</a>
+              <a href="https://www.3dxworld.com/products/official-creality-k1-max-2025-edition" target="_blank">3DxWorld</a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="card printer-card">
+        <div class="product-img-wrap">
+          <img src="https://siamreprap.com/wp-content/uploads/2025/02/P1S-for-web-600x600.jpg" alt="Bambu Lab P1S">
+          <span class="img-credit">รูปจาก Siamreprap</span>
+        </div>
+        <div>
+          <div class="product-title-row">
+            <div>
+              <span class="pill" style="background:#eafaf2;color:#0f8a5f">Long Term</span>
+              <h2>Bambu Lab P1S</h2>
+            </div>
+            <span class="tag" style="background:#eafaf2;color:#0f8a5f">ตัวจบ</span>
+          </div>
+          <p>เหมาะกับการใช้งานระยะยาว งานจริงจัง และวัสดุที่ต้องการตู้ปิด เช่น ABS / ASA เพราะมี Enclosure ในตัว</p>
+          <div class="price">฿21,900 <small>โดยประมาณ</small></div>
+          <div class="spec-grid">
+            <div class="spec"><span>พื้นที่พิมพ์</span><b>256 × 256 × 256 mm</b></div>
+            <div class="spec"><span>โครงสร้าง</span><b>CoreXY</b></div>
+            <div class="spec"><span>ตู้ปิด</span><b>มี Enclosure</b></div>
+            <div class="spec"><span>จุดเด่น</span><b>เสถียร / ใช้ยาว</b></div>
+          </div>
+          <b>เหมาะกับงาน</b>
+          <ul class="list">
+            <li>งานบริษัทที่ใช้งานบ่อย</li>
+            <li>Prototype / Fixture / Housing</li>
+            <li>งาน PETG / ABS / ASA ที่ต้องการความนิ่ง</li>
+          </ul>
+          <div class="buy-box">
+            <b>ช่องทางซื้อ</b>
+            Siamreprap, ร้าน 3D Printer ไทย, Shopee Mall
+            <div class="buy-links">
+              <a href="https://siamreprap.com/siamreprap-3d-printer-shop/manufacturing-and-rd/bambu-lab-p1s/" target="_blank">Siamreprap</a>
+              <a href="https://bambulab.com/en/p1" target="_blank">Official Specs</a>
+            </div>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section id="materials">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Material Guide</p>
+          <h2>วัสดุที่ควรรู้</h2>
+        </div>
+        <p>แนะนำให้เริ่มจาก PLA เพื่อเรียนรู้เครื่อง แล้วค่อยขยับไป PETG เมื่อเริ่มพิมพ์ของใช้งานจริงในโกดังหรือหน้างาน</p>
+      </div>
+
+      <div class="grid-3">
+        <div class="card material">
+          <div class="material-photo"><div class="spool-icon"></div></div>
+          <div>
+            <h3>PLA</h3>
+            <p>พิมพ์ง่ายที่สุด เหมาะกับมือใหม่ งานต้นแบบ งานออฟฟิศ และงานที่ไม่โดนความร้อนสูง</p>
+            <ul class="list"><li>ใช้ง่าย</li><li>กลิ่นน้อย</li><li>ไม่เหมาะตากแดด/ร้อนจัด</li></ul>
+          </div>
+        </div>
+        <div class="card material">
+          <div class="material-photo"><div class="spool-icon" style="border-color:#0f8a5f"></div></div>
+          <div>
+            <h3>PETG</h3>
+            <p>แข็งแรงและทนร้อนกว่า PLA เหมาะกับงานโกดัง Holder, Fixture, Adapter และ Housing</p>
+            <ul class="list"><li>เหนียวและทนกว่า</li><li>เหมาะของใช้จริง</li><li>ต้องเก็บกันชื้น</li></ul>
+          </div>
+        </div>
+        <div class="card material">
+          <div class="material-photo"><div class="spool-icon" style="border-color:#c85a17"></div></div>
+          <div>
+            <h3>ABS / ASA</h3>
+            <p>เหมาะกับงานที่ต้องการทนร้อนมากขึ้น แต่ควรใช้เครื่องมีตู้ปิด เช่น P1S หรือ K1 Max</p>
+            <ul class="list"><li>ทนร้อนดี</li><li>เหมาะงานจริงจัง</li><li>ควรระบายอากาศ</li></ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="price">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Price & Buying Channel</p>
+          <h2>ราคาและช่องทางการซื้อ</h2>
+        </div>
+        <p>ราคาเป็นราคาอ้างอิงที่พบจากแหล่งขายออนไลน์ ควรเช็คราคาและสต็อกจริงก่อนออกใบสั่งซื้อ</p>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>รุ่น</th>
+            <th>ราคาอ้างอิง</th>
+            <th>ช่องทางซื้อ</th>
+            <th>เหตุผลที่ควรเลือก</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><b>Bambu Lab A1</b></td>
+            <td>฿10,900–11,900</td>
+            <td>Siamreprap / Bentoweb / Print3DD / Shopee Mall</td>
+            <td>เหมาะที่สุดสำหรับเครื่องแรก ใช้ง่าย คุ้ม และเริ่มงานจริงได้เร็ว</td>
+          </tr>
+          <tr>
+            <td><b>Creality K1 Max</b></td>
+            <td>ประมาณ ฿28,000–36,590</td>
+            <td>Siamreprap / In2real3D / Central / OfficeMate / Shopee Mall</td>
+            <td>เหมาะถ้าโจทย์หลักคือพิมพ์ชิ้นใหญ่แบบชิ้นเดียวจบ</td>
+          </tr>
+          <tr>
+            <td><b>Bambu Lab P1S</b></td>
+            <td>฿21,900</td>
+            <td>Siamreprap / ร้าน 3D Printer ไทย / Shopee Mall</td>
+            <td>เหมาะกับการใช้งานระยะยาวและวัสดุที่ต้องการตู้ปิด</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="decision">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Final Decision</p>
+          <h2>สรุปข้อเสนอ</h2>
+        </div>
+        <p>เลือกตามโจทย์การใช้งานจริงของบริษัท ไม่จำเป็นต้องเลือกเครื่องแพงสุดเสมอไป</p>
+      </div>
+
+      <div class="decision-grid">
+        <div class="decision-card">
+          <div class="rank">1</div>
+          <h3>Bambu Lab A1</h3>
+          <p><b>แนะนำเป็นเครื่องแรก</b></p>
+          <p>เพราะใช้ง่าย คุ้มค่า และเหมาะกับงานบริษัททั่วไปที่สุด</p>
+        </div>
+        <div class="decision-card">
+          <div class="rank">2</div>
+          <h3>Creality K1 Max</h3>
+          <p><b>แนะนำถ้าเน้นของใหญ่</b></p>
+          <p>เพราะพื้นที่ 300mm ทำให้พิมพ์ชิ้นใหญ่จบในชิ้นเดียวได้มากกว่า</p>
+        </div>
+        <div class="decision-card">
+          <div class="rank">3</div>
+          <h3>Bambu Lab P1S</h3>
+          <p><b>แนะนำถ้าใช้ยาว</b></p>
+          <p>เพราะมีตู้ปิดและเสถียรกว่า เหมาะกับงานจริงจังระยะยาว</p>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:24px;border:2px solid rgba(21,94,239,.22)">
+        <h3>ข้อเสนอหลัก</h3>
+        <p style="font-size:21px;margin:0">ถ้าซื้อเครื่องแรก แนะนำ <b style="color:var(--blue)">Bambu Lab A1</b> เป็นตัวเริ่มต้นที่สมดุลที่สุด แต่ถ้ารู้ชัดว่าจะทำของใหญ่เป็นหลัก ให้ขยับเป็น <b style="color:var(--orange)">Creality K1 Max</b></p>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Sources</p>
+          <h2>แหล่งอ้างอิงและรูปภาพ</h2>
+        </div>
+        <p>ใส่ไว้เพื่อให้ตรวจสอบต่อได้ง่ายก่อนทำใบเสนอซื้อจริง</p>
+      </div>
+
+      <div class="source-list">
+        <a href="https://siamreprap.com/siamreprap-3d-printer-shop/education-and-academic-research/bambu-lab-a1/" target="_blank">Siamreprap — Bambu Lab A1 ราคา 11,900 บาท และรูปสินค้า</a>
+        <a href="https://siamreprap.com/siamreprap-3d-printer-shop/manufacturing-and-rd/bambu-lab-p1s/" target="_blank">Siamreprap — Bambu Lab P1S ราคา 21,900 บาท และรูปสินค้า</a>
+        <a href="https://bambulab.com/en/a1/tech-specs" target="_blank">Bambu Lab Official — A1 Specs</a>
+        <a href="https://bambulab.com/en/p1" target="_blank">Bambu Lab Official — P1 Series Specs</a>
+        <a href="https://www.creality.com/products/creality-k1-max-3d-printer" target="_blank">Creality Official — K1 Max Specs</a>
+        <a href="https://www.3dxworld.com/products/official-creality-k1-max-2025-edition" target="_blank">3DxWorld — Creality K1 Max รูปสินค้า</a>
+        <a href="https://x3dtechnology.com/pages/filament-guide" target="_blank">X3D Technology — Filament Material Guide</a>
+        <a href="https://siamreprap.com/asking-for-3d-printer-quotation/" target="_blank">Siamreprap — ขอใบเสนอราคา</a>
+      </div>
+      <p class="note">หมายเหตุ: ไฟล์นี้เป็น HTML แบบเปิดด้วย Browser ได้ทันที และใช้รูปจาก URL บนอินเทอร์เน็ต ถ้าเปิดแบบออฟไลน์รูปอาจไม่แสดง</p>
+    </section>
+  </main>
+</body>
+</html>
